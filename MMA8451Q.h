@@ -23,6 +23,8 @@
 
 /**
 * MMA8451Q accelerometer example
+*
+* @code
 * #include "mbed.h"
 * #include "MMA8451Q.h"
 *
@@ -43,6 +45,7 @@
 *        led = !led;
 *    }
 * }
+* @endcode
 */
 class MMA8451Q
 {

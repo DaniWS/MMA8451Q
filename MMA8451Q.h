@@ -30,12 +30,12 @@
 * 
 * #define MMA8451_I2C_ADDRESS (0x1d<<1)
 * 
+* int main(void) {
+* 
 * MMA8451Q acc(P_E25, P_E24, MMA8451_I2C_ADDRESS);
 * PwmOut rled(LED_RED);
 * PwmOut gled(LED_GREEN);
 * PwmOut bled(LED_BLUE);
-* 
-* int main(void) {
 * 
 *     while (true) {       
 *         rled = 1.0 - abs(acc.getAccX());

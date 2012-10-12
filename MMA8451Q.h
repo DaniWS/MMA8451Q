@@ -27,23 +27,22 @@
 * @code
 * #include "mbed.h"
 * #include "MMA8451Q.h"
-*
+* 
 * #define MMA8451_I2C_ADDRESS (0x1d<<1)
-*
+* 
+* MMA8451Q acc(P_E25, P_E24, MMA8451_I2C_ADDRESS);
+* PwmOut rled(LED_RED);
+* PwmOut gled(LED_GREEN);
+* PwmOut bled(LED_BLUE);
+* 
 * int main(void) {
-*    DigitalOut led(LED_GREEN);
-*    MMA8451Q acc(P_E25, P_E24, MMA8451_I2C_ADDRESS);
-*    printf("WHO AM I: 0x%2X\r\n", acc.getWhoAmI());
-*    
-*    while (true) {
-*        printf("-----------\r\n");
-*        printf("acc_x: %d\r\n", acc.getAccX());
-*        printf("acc_y: %d\r\n", acc.getAccY());
-*        printf("acc_z: %d\r\n", acc.getAccZ());
-*        
-*        wait(1);
-*        led = !led;
-*    }
+* 
+*     while (true) {       
+*         rled = 1.0 - abs(acc.getAccX());
+*         gled = 1.0 - abs(acc.getAccY());
+*         bled = 1.0 - abs(acc.getAccZ());
+*         wait(0.1);
+*     }
 * }
 * @endcode
 */
@@ -76,28 +75,28 @@ public:
    *
    * @returns X axis acceleration
    */
-  int16_t getAccX();
+  float getAccX();
 
   /**
    * Get Y axis acceleration
    *
    * @returns Y axis acceleration
    */
-  int16_t getAccY();
+  float getAccY();
 
   /**
    * Get Z axis acceleration
    *
    * @returns Z axis acceleration
    */
-  int16_t getAccZ();
+  float getAccZ();
 
   /**
    * Get XYZ axis acceleration
    *
    * @param res array where acceleration data will be stored
    */
-  void getAccAllAxis(int16_t * res);
+  void getAccAllAxis(float * res);
 
 private:
   I2C m_i2c;

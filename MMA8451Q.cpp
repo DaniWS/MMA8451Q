@@ -40,19 +40,19 @@ uint8_t MMA8451Q::getWhoAmI() {
     return who_am_i;
 }
 
-int16_t MMA8451Q::getAccX() {
-    return getAccAxis(REG_OUT_X_MSB);
+float MMA8451Q::getAccX() {
+    return (float(getAccAxis(REG_OUT_X_MSB))/4096.0);
 }
 
-int16_t MMA8451Q::getAccY() {
-    return getAccAxis(REG_OUT_Y_MSB);
+float MMA8451Q::getAccY() {
+    return (float(getAccAxis(REG_OUT_Y_MSB))/4096.0);
 }
 
-int16_t MMA8451Q::getAccZ() {
-    return getAccAxis(REG_OUT_Z_MSB);
+float MMA8451Q::getAccZ() {
+    return (float(getAccAxis(REG_OUT_Z_MSB))/4096.0);
 }
 
-void MMA8451Q::getAccAllAxis(int16_t * res) {
+void MMA8451Q::getAccAllAxis(float * res) {
     res[0] = getAccX();
     res[1] = getAccY();
     res[2] = getAccZ();
